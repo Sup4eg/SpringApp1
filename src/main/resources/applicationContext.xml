@@ -19,7 +19,7 @@
     </bean>
 
     <bean id="musicPlayer"
-          class="ru.kirilltrezubov.springcourse.MusicPlayer">
+          class="ru.kirilltrezubov.springcourse.MusicPlayer" scope="prototype">
         <property name="music">
             <list>
                 <ref bean="musicRapBean" />

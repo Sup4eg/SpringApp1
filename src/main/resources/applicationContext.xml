@@ -15,6 +15,7 @@
           class="ru.kirilltrezubov.springcourse.ClassicalMusic"
           init-method="doMyInit"
           destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic"
     >
     </bean>
     <bean id="musicRockMusic"

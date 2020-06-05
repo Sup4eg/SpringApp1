@@ -2,6 +2,7 @@ package ru.kirilltrezubov.springcourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.kirilltrezubov.springcourse.playerEnum.MusicPlayerEnum;
 
@@ -9,9 +10,16 @@ import java.util.Random;
 
 @Component
 public class MusicPlayer {
-    private Music music1;
+    @Value("${musicPlayer.name}")
+    private String name;
+
+    @Value("${musicPlayer.volume}")
+    private String volume;
+
+
     private Music music2;
     private Music music3;
+    private Music music1;
 
     @Autowired
     public MusicPlayer(@Qualifier("rockMusic") Music music1, @Qualifier("classicalMusic") Music music2, @Qualifier("rapMusic") Music music3) {
@@ -35,6 +43,12 @@ public class MusicPlayer {
         return "Playing: " + song;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getVolume() {
+        return volume;
+    }
 }
 

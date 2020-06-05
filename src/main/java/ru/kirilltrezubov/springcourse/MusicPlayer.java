@@ -1,12 +1,9 @@
 package ru.kirilltrezubov.springcourse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-import ru.kirilltrezubov.springcourse.playerEnum.MusicPlayerEnum;
-
+import java.util.List;
 import java.util.Random;
+
 
 public class MusicPlayer {
     @Value("${musicPlayer.name}")
@@ -16,29 +13,17 @@ public class MusicPlayer {
     private String volume;
 
 
-    private Music music2;
-    private Music music3;
-    private Music music1;
+    private List<Music> musics;
 
-    public MusicPlayer(@Qualifier("rockMusic") Music music1, @Qualifier("classicalMusic") Music music2, @Qualifier("rapMusic") Music music3) {
-        this.music1 = music1;
-        this.music2 = music2;
-        this.music3 = music3;
+
+    public MusicPlayer(List<Music> musics) {
+        this.musics = musics;
     }
 
-    public String playMusic(MusicPlayerEnum musicPlayerEnum) {
-        String song = "";
-        switch (musicPlayerEnum) {
-            case ROCK:
-                song = music1.getSong().get((int)(Math.random() * 3));
-                break;
-            case CLASSICAL:
-                song = music2.getSong().get((int)(Math.random() * 3));
-                break;
-            case RAP:
-                song = music3.getSong().get((int)(Math.random() * 3));
-        }
-        return "Playing: " + song;
+    public String playMusic() {
+        List<String> genrePlaylist = musics.get(new Random().nextInt(musics.size()))
+                .getSong();
+        return "Playing: " + genrePlaylist.get(new Random().nextInt(genrePlaylist.size()));
     }
 
     public String getName() {
@@ -47,6 +32,10 @@ public class MusicPlayer {
 
     public String getVolume() {
         return volume;
+    }
+
+    public List<Music> getMusics() {
+        return musics;
     }
 }
 

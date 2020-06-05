@@ -2,6 +2,7 @@ package ru.kirilltrezubov.springcourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.kirilltrezubov.springcourse.playerEnum.MusicPlayerEnum;
 
 @Component
 public class Computer {
@@ -18,7 +19,7 @@ public class Computer {
     public String toString() {
         return "Computer{" +
                 "id=" + id +
-                ", musicPlayer=" + musicPlayer.playMusic() +
+                ", musicPlayer=" + musicPlayer.playMusic(MusicPlayerEnum.CLASSICAL) +
                 '}';
     }
 }

@@ -8,7 +8,6 @@ import ru.kirilltrezubov.springcourse.playerEnum.MusicPlayerEnum;
 
 import java.util.Random;
 
-@Component
 public class MusicPlayer {
     @Value("${musicPlayer.name}")
     private String name;
@@ -21,7 +20,6 @@ public class MusicPlayer {
     private Music music3;
     private Music music1;
 
-    @Autowired
     public MusicPlayer(@Qualifier("rockMusic") Music music1, @Qualifier("classicalMusic") Music music2, @Qualifier("rapMusic") Music music3) {
         this.music1 = music1;
         this.music2 = music2;
